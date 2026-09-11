@@ -5,25 +5,24 @@ import { ArrowRight, BookOpen, Users, Clock, Check, Search, ChevronDown, Calenda
 import ScrollReveal from '@/components/ScrollReveal';
 import { dailyDevotionals, getTodayDevotional, type DailyDevotional } from '@/data/devotionals';
 import { faqCategories, type FAQCategory } from '@/data/faq';
+import { collections } from '@/pages/books/assets';
 
-const series = [
-  {
-    number: 'Series One', title: 'I AM', subtitle: '120 Names of Jesus', days: 120,
-    available: true,
-    img: 'https://images.pexels.com/photos/1111319/pexels-photo-1111319.jpeg?auto=compress&cs=tinysrgb&w=800',
-    description: "A transformational journey through 120 names and titles of Jesus Christ. From Alpha to Omega, Bread of Life to King of Kings—each day reveals a new dimension of His character, drawing every generation deeper into the reality of who Jesus truly is.",
-    highlights: ['Rooted in 120 distinct scriptural names','Each name explored across 3 generations','Daily scripture, reflection, prayer, confession','Perfect for individual or family devotion'],
-    audiences: ['Adults: Deep theological reflection','Teens: Real-life application','Children: Engaging stories'],
-  },
-  {
-    number: 'Series Two', title: 'Full of Grace and Truth', subtitle: '120 Gospel Encounters', days: 120,
-    available: false,
-    img: 'https://images.pexels.com/photos/415571/pexels-photo-415571.jpeg?auto=compress&cs=tinysrgb&w=800',
-    description: "Walk through the four Gospels in 120 powerful encounters with Jesus. See Him heal the sick, teach the multitudes, confront religious pride, and rise victorious—through the eyes of every generation.",
-    highlights: ['Chronological Gospel journey','Every encounter in three voices','Character studies and life lessons','A rich, complete picture of Jesus'],
-    audiences: ['Adults: Historical context and depth','Teens: Personal encounter with Jesus',"Children: Jesus as friend and hero"],
-  },
-];
+const series = collections.map((c, i) => ({
+  number: c.volume,
+  title: c.title,
+  subtitle: c.scripture,
+  days: c.days,
+  available: true,
+  cover: c.cover,
+  description: c.description,
+  highlights: [
+    `${c.days} days of Christ-centred devotionals`,
+    'Three editions: Adult, Teen, and Children',
+    'Daily scripture, reflection, prayer, and confession',
+    'Designed for individual or family devotion',
+  ],
+  audiences: ['Adults: Deep theological reflection', 'Teens: Real-life application', 'Children: Engaging stories'],
+}));
 
 const inside = [
   { n:'01', title:'Key Scripture',       desc:'The foundational verse shared across all three editions for that day.' },
@@ -247,7 +246,7 @@ function FAQSection() {
 export default function DevotionalsPage() {
   useSEO({
     title: 'Daily Devotionals & FAQ | In Him Daily',
-    description: 'Read today\'s devotional, explore the 240-day devotional library, and find answers to common questions about In Him Daily devotionals for adults, teens, and children.',
+    description: 'Read today\'s devotional, explore the six-collection devotional library, and find answers to common questions about In Him Daily devotionals for adults, teens, and children.',
     canonicalPath: '/devotionals',
   });
 
@@ -272,24 +271,25 @@ export default function DevotionalsPage() {
       {/* Daily Devotional */}
       <DailyDevotionalSection />
 
-      {/* 240 Days timeline */}
-      <section className="py-10 ih-section border-y border-white/10" aria-label="240 Days of Encountering Jesus">
+      {/* Journey timeline */}
+      <section className="py-10 ih-section border-y border-white/10" aria-label="The journey through Scripture">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <ScrollReveal className="text-center mb-6">
-            <h2 className="font-playfair text-2xl font-bold text-white">240 Days of Encountering Jesus</h2>
+            <h2 className="font-playfair text-2xl font-bold text-white">600+ Days of Encountering Jesus</h2>
           </ScrollReveal>
           <div className="flex items-center justify-center gap-3 flex-wrap">
             {[
-              {day:'Day 1',  name:'The Word',       ref:'John 1:1',   s1:true},
-              {day:'Day 30', name:'Bread of Life',  ref:'John 6:35',  s1:true},
-              {day:'Day 60', name:'Good Shepherd',  ref:'John 10:11', s1:true},
-              {day:'Day 120',name:'King of Kings',  ref:'Rev 19:16',  s1:true},
-              {day:'Day 121',name:'Grace & Truth',  ref:'John 1:14',  s1:false},
-              {day:'Day 240',name:'It Is Finished', ref:'John 19:30', s1:false},
+              {day:'Genesis',     name:'The Beginning',   ref:'Gen 1:1'},
+              {day:'Exodus',       name:'Deliverance',      ref:'Ex 12:13'},
+              {day:'Leviticus',    name:'Offerings',        ref:'Lev 1:4'},
+              {day:'Numbers',      name:'Wilderness',       ref:'Num 6:24'},
+              {day:'Deuteronomy',  name:'The Prophet',      ref:'Deut 18:15'},
+              {day:'Psalms',       name:'The Shepherd-King',ref:'Ps 23:1'},
+              {day:'New Testament',name:'Immanuel',         ref:'John 1:14'},
             ].map((item,i,arr)=>(
               <div key={i} className="flex items-center gap-3">
                 <div className="text-center">
-                  <div className={`w-2.5 h-2.5 rounded-full mx-auto mb-1.5 ${item.s1 ? 'bg-gold-400' : 'bg-navy-400'}`} />
+                  <div className="w-2.5 h-2.5 rounded-full mx-auto mb-1.5 bg-gold-400" />
                   <p className="text-[0.72rem] font-bold text-white">{item.day}</p>
                   <p className="text-[0.68rem] text-white/50 max-w-[72px] leading-tight">{item.name}</p>
                   <p className="text-[0.65rem] text-gold-400">{item.ref}</p>
@@ -297,10 +297,6 @@ export default function DevotionalsPage() {
                 {i < arr.length-1 && <div className="w-8 h-px bg-white/15" aria-hidden="true" />}
               </div>
             ))}
-          </div>
-          <div className="flex justify-center gap-6 mt-5">
-            <div className="flex items-center gap-2 text-xs text-white/55"><div className="w-2.5 h-2.5 rounded-full bg-gold-400" aria-hidden="true" /> Series One</div>
-            <div className="flex items-center gap-2 text-xs text-white/55"><div className="w-2.5 h-2.5 rounded-full bg-navy-400" aria-hidden="true" /> Series Two</div>
           </div>
         </div>
       </section>
@@ -313,7 +309,7 @@ export default function DevotionalsPage() {
               <div className="rounded-3xl overflow-hidden ih-card">
                 <div className={`grid lg:grid-cols-2 ${i%2!==0 ? 'lg:grid-flow-dense' : ''}`}>
                   <div className={`relative h-64 lg:h-auto ${i%2!==0 ? 'lg:col-start-2' : ''}`}>
-                    <img src={s.img} alt={s.title} loading="lazy" decoding="async" className="w-full h-full object-cover" />
+                    <img src={s.cover} alt={s.title} loading="lazy" decoding="async" className="w-full h-full object-cover" />
                     <div className="absolute inset-0 bg-gradient-to-r from-[#05070D]/60 to-transparent" aria-hidden="true" />
                     <div className="absolute top-5 left-5">
                       <span className={`px-3.5 py-1.5 rounded-full text-[0.72rem] font-bold ${s.available ? 'bg-gold-500 text-[#05070D]' : 'bg-white/15 text-white backdrop-blur'}`}>
@@ -390,7 +386,7 @@ export default function DevotionalsPage() {
         <div className="max-w-xl mx-auto px-4">
           <ScrollReveal>
             <h2 className="font-playfair text-4xl font-bold text-white mb-4">Ready to Begin?</h2>
-            <p className="text-white/55 mb-8">Start your family's encounter with a free 7-day sample from Series One.</p>
+            <p className="text-white/55 mb-8">Start your family's encounter with a free 7-day sample from Volume One.</p>
             <Link to="/free-sample" className="inline-flex items-center gap-2 px-8 py-4 ih-btn-gold">
               Get Your Free Sample <ArrowRight size={17} aria-hidden="true" />
             </Link>
