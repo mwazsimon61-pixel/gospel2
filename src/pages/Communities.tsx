@@ -1,4 +1,4 @@
-import { ExternalLink, Check, Users, Youtube, Facebook, Instagram } from 'lucide-react';
+import { ExternalLink, Check, Users, Youtube, Facebook, Instagram, ShieldCheck } from 'lucide-react';
 import { useSEO } from '@/hooks/useSEO';
 import ScrollReveal from '@/components/ScrollReveal';
 
@@ -49,6 +49,7 @@ const whatsappGroups = [
     link: 'https://chat.whatsapp.com/BeW94WGjs9oFFyNpVfJhIQ?s=ms&p=a&ilr=2',
     qrImage: '/images/communities/IMG_20260714_211224.jpg',
     members: '250+',
+    safetyNote: 'This is a parent-guided space. A parent or guardian must join on behalf of their child and remain responsible for their participation. Group admins review join requests to keep the community safe.',
   },
 ];
 
@@ -203,6 +204,13 @@ export default function CommunitiesPage() {
                       ))}
                     </ul>
 
+                    {group.safetyNote && (
+                      <div className="mb-4 p-3.5 rounded-xl bg-amber-500/8 border border-amber-500/20 flex gap-2.5 items-start">
+                        <ShieldCheck size={15} className="text-amber-400 shrink-0 mt-0.5" aria-hidden="true" />
+                        <p className="text-[0.7rem] text-amber-200/80 leading-relaxed">{group.safetyNote}</p>
+                      </div>
+                    )}
+
                     <div className="flex items-center gap-1.5 mb-5">
                       <Users size={12} className="text-white/40" aria-hidden="true" />
                       <span className="text-xs text-white/45">{group.members} members growing daily</span>
@@ -234,7 +242,7 @@ export default function CommunitiesPage() {
             <div className="max-w-2xl mx-auto p-6 rounded-2xl bg-[#25D366]/8 border border-[#25D366]/20 text-center">
               <p className="text-sm text-white/70 leading-relaxed">
                 <span className="font-semibold text-white">How to join:</span> Tap the button to open WhatsApp directly, or open WhatsApp on your phone and scan the QR code above.
-                No approval needed — you'll be connected instantly.
+                Adults and Teens groups are open instantly. The Kids group requires admin approval to ensure a safe, parent-guided environment.
               </p>
             </div>
           </ScrollReveal>

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ExternalLink, BookOpen, MessageCircle, Star, Users, Heart, Check } from 'lucide-react';
+import { ExternalLink, BookOpen, MessageCircle, Star, Users, Heart, Check, ShieldCheck } from 'lucide-react';
 
 const communities = [
   {
@@ -43,6 +43,7 @@ const communities = [
     link:    'https://chat.whatsapp.com/BeW94WGjs9oFFyNpVfJhIQ?s=ms&p=a&ilr=2',
     btnLabel:'Join Kids Community',
     members: '250+',
+    safetyNote: 'Parent-guided space. A parent or guardian must join on behalf of their child. Admins review join requests for safety.',
   },
 ];
 
@@ -151,6 +152,13 @@ export default function WhatsAppCommunity() {
                       </li>
                     ))}
                   </ul>
+
+                  {c.safetyNote && (
+                    <div className="mb-5 p-3 rounded-xl bg-amber-50 border border-amber-200 flex gap-2.5 items-start">
+                      <ShieldCheck size={14} className="text-amber-600 shrink-0 mt-0.5" aria-hidden="true" />
+                      <p className="text-[0.7rem] text-amber-700 leading-relaxed">{c.safetyNote}</p>
+                    </div>
+                  )}
 
                   <div className="flex items-center gap-1.5 mb-5">
                     <Users size={12} className="text-navy-300" aria-hidden="true" />
