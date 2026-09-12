@@ -63,6 +63,11 @@ export function useSEO({ title, description, canonicalPath, ogImage, ogType, jso
 
     setMeta('property', 'og:image', ogImage ?? DEFAULT_OG_IMAGE);
     setMeta('name', 'twitter:image', ogImage ?? DEFAULT_OG_IMAGE);
+    setMeta('property', 'og:image:width', '1254');
+    setMeta('property', 'og:image:height', '1254');
+    setMeta('property', 'og:image:type', 'image/jpeg');
+    setMeta('property', 'og:site_name', 'In Him Daily');
+    setMeta('property', 'og:locale', 'en_US');
     setMeta('property', 'og:type', ogType ?? 'website');
 
     if (jsonLd) setJsonLd('page', jsonLd);
