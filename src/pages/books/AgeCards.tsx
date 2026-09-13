@@ -27,7 +27,7 @@ export default function AgeCards() {
               <ScrollReveal key={card.id} delay={i * 120}>
                 <Link
                   to="/books#collections"
-                  className="block rounded-2xl p-8 h-full group transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_20px_60px_rgba(217,166,46,0.18)]"
+                  className="block rounded-2xl p-8 group transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_20px_60px_rgba(217,166,46,0.18)]"
                   style={{
                     background: 'rgba(255,255,255,0.02)',
                     border: '1px solid #3A3A35',
@@ -67,8 +67,8 @@ export default function AgeCards() {
                       src={card.cover}
                       alt={`${card.age} devotional cover`}
                       loading="lazy"
-                      className="relative block w-full h-auto object-contain transition-transform duration-500 group-hover:scale-[1.03]"
-                      style={{ filter: 'brightness(1.2) contrast(1.1)', minHeight: '220px' }}
+                      className="relative block w-full h-auto object-contain"
+                      style={{ filter: 'brightness(1.2) contrast(1.1)' }}
                     />
                   </div>
 

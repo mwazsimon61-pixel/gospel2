@@ -8,7 +8,7 @@ const glowColors = [
   'rgba(217,166,46,0.35)',
 ];
 
-const rotations = ['-4deg', '0deg', '4deg'];
+
 
 const descriptions = [
   'Faith-filled devotionals for young hearts.',
@@ -60,7 +60,6 @@ export default function Hero() {
       <div className="relative z-10 w-full max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8">
         <div
           className="flex flex-col md:flex-row items-center justify-center gap-12 md:gap-[60px] lg:gap-[80px] pt-4"
-          style={{ perspective: '1200px' }}
         >
           {heroBooks.map((book, i) => (
             <Link
@@ -71,10 +70,6 @@ export default function Hero() {
               {/* Book with glow behind */}
               <div
                 className="relative transition-all duration-[350ms] ease-out group-hover:-translate-y-3 group-hover:scale-[1.04]"
-                style={{
-                  transform: `rotateY(0deg) rotate(${rotations[i]})`,
-                  transformStyle: 'preserve-3d',
-                }}
               >
                 {/* Soft radial glow behind book */}
                 <div
